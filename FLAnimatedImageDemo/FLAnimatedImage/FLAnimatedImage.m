@@ -39,8 +39,8 @@
 // An animated image's data size (dimensions * frameCount) category; its value is the max allowed memory (in MB).
 // E.g.: A 100x200px GIF with 30 frames is ~2.3MB in our pixel format and would fall into the `FLAnimatedImageDataSizeCategoryAll` category.
 typedef NS_ENUM(NSUInteger, FLAnimatedImageDataSizeCategory) {
-    FLAnimatedImageDataSizeCategoryAll = 10,       // All frames permanently in memory (be nice to the CPU)
-    FLAnimatedImageDataSizeCategoryDefault = 75,   // A frame cache of default size in memory (usually real-time performance and keeping low memory profile)
+    FLAnimatedImageDataSizeCategoryAll = 100,       // All frames permanently in memory (be nice to the CPU)
+    FLAnimatedImageDataSizeCategoryDefault = 200,   // A frame cache of default size in memory (usually real-time performance and keeping low memory profile)
     FLAnimatedImageDataSizeCategoryOnDemand = 250, // Only keep one frame at the time in memory (easier on memory, slowest performance)
     FLAnimatedImageDataSizeCategoryUnsupported     // Even for one frame too large, computer says no.
 };
