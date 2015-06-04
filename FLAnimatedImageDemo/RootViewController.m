@@ -125,13 +125,13 @@
             [self.view addSubview:self.imageView4];
             self.imageView4.frame = CGRectMake(389.0, 577.0, 379.0, 447.0);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:0.1]];
+                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:2.0]];
             });
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:0.2]];
+                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:3.0]];
             });
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:0.3]];
+                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:4.0]];
             });
 
 

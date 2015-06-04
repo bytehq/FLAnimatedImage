@@ -368,6 +368,9 @@ static NSHashTable *allAnimatedImagesWeak;
     NSTimeInterval offset = 0;
     NSInteger matchingIndex = -1;
     NSInteger index = 0;
+
+    NSTimeInterval duration = 0.0;
+
     for (NSNumber *delay in _delayTimes) {
         if (offset >= timeOffset) {
             matchingIndex = index;
@@ -376,9 +379,15 @@ static NSHashTable *allAnimatedImagesWeak;
 
         offset += delay.floatValue;
         index++;
+
+        duration += delay.floatValue;
     }
 
-//    NSLog(@"%i", matchingIndex);
+    if (matchingIndex == -1 && timeOffset >= duration) {
+        timeOffset = fmod(timeOffset, duration);
+        return [self frameIndexForTimeOffset:timeOffset];
+    }
+
     return matchingIndex;
 }
 
