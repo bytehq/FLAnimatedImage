@@ -336,6 +336,8 @@ static NSHashTable *allAnimatedImagesWeak;
         @synchronized(allAnimatedImagesWeak) {
             [allAnimatedImagesWeak addObject:self];
         }
+
+        [self frameIndexForTimeOffset:0.3];
     }
     return self;
 }
@@ -361,6 +363,34 @@ static NSHashTable *allAnimatedImagesWeak;
 
 
 #pragma mark - Public Methods
+
+- (NSInteger)frameIndexForTimeOffset:(NSTimeInterval)timeOffset {
+    NSTimeInterval offset = 0;
+    NSInteger matchingIndex = -1;
+    NSInteger index = 0;
+    for (NSNumber *delay in _delayTimes) {
+        if (offset >= timeOffset) {
+            matchingIndex = index;
+            break;
+        }
+
+        offset += delay.floatValue;
+        index++;
+    }
+
+//    NSLog(@"%i", matchingIndex);
+    return matchingIndex;
+}
+
+- (UIImage *)imageForTimeOffset:(NSTimeInterval)timeOffset {
+    NSInteger index = [self frameIndexForTimeOffset:timeOffset];
+    if (index == -1) {
+        return nil;
+    }
+
+    // TODO: Retry logic...
+    return [self imageLazilyCachedAtIndex:index];
+}
 
 // See header for more details.
 // Note: both consumer and producer are throttled: consumer by frame timings and producer by the available memory (max buffer window size).

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) FLAnimatedImageView *imageView1;
 @property (nonatomic, strong) FLAnimatedImageView *imageView2;
 @property (nonatomic, strong) FLAnimatedImageView *imageView3;
+@property (nonatomic, strong) UIImageView *imageView4;
 
 // Views for the debug overlay UI
 @property (nonatomic, strong) DebugView *debugView1;
@@ -115,6 +116,25 @@
             self.debugView3.imageView = self.imageView3;
             self.debugView3.image = animatedImage3;
             self.imageView3.userInteractionEnabled = YES;
+
+            if (!self.imageView4) {
+                self.imageView4 = [[UIImageView alloc] init];
+                self.imageView4.contentMode = UIViewContentModeScaleAspectFill;
+                self.imageView4.clipsToBounds = YES;
+            }
+            [self.view addSubview:self.imageView4];
+            self.imageView4.frame = CGRectMake(389.0, 577.0, 379.0, 447.0);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:0.1]];
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:0.2]];
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.imageView4.image = [animatedImage3 imageLazilyCachedAtIndex:[animatedImage3 frameIndexForTimeOffset:0.3]];
+            });
+
+
         });
     });
     
